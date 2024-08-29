@@ -1,6 +1,14 @@
+using Models;
+
 namespace Data.Repository.Interface;
 
-public class IClubRepo
+public interface IClubRepo
 {
+    void Add(Clubs club);
     
+    void Update(Clubs club);
+    
+    void Delete(Guid id);
+    
+    IEnumerable<Clubs> GetAllClubs();
 }

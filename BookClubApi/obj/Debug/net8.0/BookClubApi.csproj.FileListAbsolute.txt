@@ -107,3 +107,7 @@
 /Users/mergixf/RiderProjects/BookClubApi/BookClubApi/obj/Debug/net8.0/BookClubApi.pdb
 /Users/mergixf/RiderProjects/BookClubApi/BookClubApi/obj/Debug/net8.0/BookClubApi.genruntimeconfig.cache
 /Users/mergixf/RiderProjects/BookClubApi/BookClubApi/obj/Debug/net8.0/ref/BookClubApi.dll
+/Users/mergixf/RiderProjects/BookClubApi/BookClubApi/bin/Debug/net8.0/Data.dll
+/Users/mergixf/RiderProjects/BookClubApi/BookClubApi/bin/Debug/net8.0/Data.pdb
+/Users/mergixf/RiderProjects/BookClubApi/BookClubApi/obj/Debug/net8.0/BookClubApi.sourcelink.json
+/Users/mergixf/RiderProjects/BookClubApi/BookClubApi/bin/Debug/net8.0/appsettings.Enviroment.json

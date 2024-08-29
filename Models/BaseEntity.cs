@@ -8,5 +8,7 @@ public class BaseEntity
     
     public Guid id { get; set; }
     
+    public DateTime dateCreated { get; set; }
+    
     public DateTime lastModified { get; set; }
 }

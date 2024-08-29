@@ -16,8 +16,8 @@ public class Users:BaseEntity
 {
     public string firstName { get; set; }
     public string lastName { get; set; }
-    public string Email { get; set; }
-    public string PasswordHash  { get; set; } 
+    public string email { get; set; }
+    public string passwordHash  { get; set; } 
     public Gender? gender { get; set; }
     public byte? [] profileImage {get; set; }
     public string? address { get; set; }

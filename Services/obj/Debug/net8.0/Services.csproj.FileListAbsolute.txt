@@ -12,3 +12,4 @@
 /Users/mergixf/RiderProjects/BookClubApi/Services/obj/Debug/net8.0/Services.pdb
 /Users/mergixf/RiderProjects/BookClubApi/Services/obj/Debug/net8.0/Services.genruntimeconfig.cache
 /Users/mergixf/RiderProjects/BookClubApi/Services/obj/Debug/net8.0/ref/Services.dll
+/Users/mergixf/RiderProjects/BookClubApi/Services/obj/Debug/net8.0/Services.sourcelink.json

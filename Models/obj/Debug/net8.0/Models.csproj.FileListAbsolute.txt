@@ -15,3 +15,4 @@
 /Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.pdb
 /Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.genruntimeconfig.cache
 /Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/ref/Models.dll
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.sourcelink.json

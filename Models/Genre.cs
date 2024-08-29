@@ -1,6 +1,8 @@
 namespace Models;
 
-public class Genre
+public class Genre:BaseEntity
 {
-    public string Description { get; set; }
+    public string title { get; set; }
+    
+    public string? description { get; set; }
 }

@@ -3,18 +3,22 @@ namespace Models;
 
 public enum clubState
 {
-    Available = 0, 
-    Booked = 1
+    Open = 0, 
+    Request = 1
 }
 public class Clubs:BaseEntity
 {
-    public string Name { get; set; }
+    public string name { get; set; }
     
-    public string Description { get; set; }
+    public string description { get; set; }
+    
+    public Genre genreList { get; set; }
+    
+    public byte? [] Image {get; set; }
     
     public Users userList { get; set; }
     
     public Users adminUserList { get; set; }
     
-    public  clubState Status { get; set; }
+    public  clubState status { get; set; }
 }

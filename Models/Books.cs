@@ -2,8 +2,11 @@ namespace Models;
 
 public class Books:BaseEntity
 {
-    public int Title { get; set; }
+    public int title { get; set; }
     
-    public string Description { get; set; }
+    public string description { get; set; }
     
+    public Genre genreList { get; set; }
+    
+    public byte? [] Image {get; set; }
 }
