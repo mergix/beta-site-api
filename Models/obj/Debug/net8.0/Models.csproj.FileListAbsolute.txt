@@ -1,0 +1,17 @@
+/Users/mergixf/RiderProjects/BookClubApi/Models/bin/Debug/net8.0/Models.deps.json
+/Users/mergixf/RiderProjects/BookClubApi/Models/bin/Debug/net8.0/Models.runtimeconfig.json
+/Users/mergixf/RiderProjects/BookClubApi/Models/bin/Debug/net8.0/Models.dll
+/Users/mergixf/RiderProjects/BookClubApi/Models/bin/Debug/net8.0/Models.pdb
+/Users/mergixf/RiderProjects/BookClubApi/Models/bin/Debug/net8.0/Services.dll
+/Users/mergixf/RiderProjects/BookClubApi/Models/bin/Debug/net8.0/Services.pdb
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.csproj.AssemblyReference.cache
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.AssemblyInfoInputs.cache
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.AssemblyInfo.cs
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.csproj.CoreCompileInputs.cache
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.csproj.Up2Date
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.dll
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/refint/Models.dll
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.pdb
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/Models.genruntimeconfig.cache
+/Users/mergixf/RiderProjects/BookClubApi/Models/obj/Debug/net8.0/ref/Models.dll
