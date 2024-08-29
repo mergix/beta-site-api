@@ -1,4 +1,5 @@
 using Data.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Data.Repository;
@@ -10,21 +11,25 @@ public class GenreRepo :IGenreRepo
     
     public void Add(Genre genre)
     {
-        throw new NotImplementedException();
+        _db.Genres.Add(genre);
+        _db.SaveChanges();
     }
 
     public void Update(Genre genre)
     {
-        throw new NotImplementedException();
+        _db.Entry(genre).State = EntityState.Modified;
+        _db.SaveChangesAsync();
     }
 
     public void Delete(Guid id)
     {
-        throw new NotImplementedException();
+        var delete =  _db.Genres.Find(id);
+        _db.Genres.Remove(delete);
+        _db.SaveChangesAsync();
     }
 
     public IEnumerable<Genre> GetAllGenres()
     {
-        throw new NotImplementedException();
+        return _db.Genres.OrderByDescending(u => u.lastModified).ToList();
     }
 }

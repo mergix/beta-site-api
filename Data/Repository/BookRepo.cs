@@ -1,4 +1,5 @@
 using Data.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Data.Repository;
@@ -8,23 +9,27 @@ public class BookRepo: IBookRepo
     
     private readonly AppDbContext _db;
     
-    public void Add(Books post)
+    public void Add(Books book)
     {
-        throw new NotImplementedException();
+        _db.Books.Add(book);
+        _db.SaveChanges();
     }
 
-    public void Update(Books post)
+    public void Update(Books book)
     {
-        throw new NotImplementedException();
+        _db.Entry(book).State = EntityState.Modified;
+        _db.SaveChangesAsync();
     }
 
     public void Delete(Guid id)
     {
-        throw new NotImplementedException();
+        var delete =  _db.Books.Find(id);
+        _db.Books.Remove(delete);
+        _db.SaveChangesAsync();
     }
 
     public IEnumerable<Books> GetAllBooks()
     {
-        throw new NotImplementedException();
+        return _db.Books.OrderByDescending(u => u.lastModified).ToList();
     }
 }

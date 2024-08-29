@@ -1,4 +1,5 @@
 using Data.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Data.Repository;
@@ -10,21 +11,25 @@ public class ClubRepo: IClubRepo
     
     public void Add(Clubs club)
     {
-        throw new NotImplementedException();
+        _db.Clubs.Add(club);
+        _db.SaveChanges();
     }
 
     public void Update(Clubs club)
     {
-        throw new NotImplementedException();
+        _db.Entry(club).State = EntityState.Modified;
+        _db.SaveChangesAsync();
     }
 
     public void Delete(Guid id)
     {
-        throw new NotImplementedException();
+        var delete =  _db.Clubs.Find(id);
+        _db.Clubs.Remove(delete);
+        _db.SaveChangesAsync();
     }
 
     public IEnumerable<Clubs> GetAllClubs()
     {
-        throw new NotImplementedException();
+        return _db.Clubs.OrderByDescending(u => u.lastModified).ToList();
     }
 }
