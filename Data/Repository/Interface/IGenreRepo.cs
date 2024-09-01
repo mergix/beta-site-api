@@ -10,5 +10,7 @@ public interface IGenreRepo
     
     void Delete(Guid id);
     
+    Genre FindGenreById(Guid id);
+    
     IEnumerable<Genre> GetAllGenres();
 }

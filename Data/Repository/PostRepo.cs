@@ -32,6 +32,12 @@ public class PostRepo: IPostRepo
     {
         return _db.Posts.OrderByDescending(u => u.lastModified).ToList();
     }
+    
+    public Posts FindPostById(Guid id)
+    {
+        var userById = _db.Posts.Find(id);
+        return userById ;
+    }
 
     public IEnumerable<Posts> GetAllPostsByDateCreated()
     {

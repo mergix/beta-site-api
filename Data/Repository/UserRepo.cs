@@ -43,6 +43,7 @@ public class UserRepo : IUserRepo
     return _db.Users.OrderByDescending(u => u.lastModified).ToList();
   }
 
+  
   public Users FindUserById(Guid id)
   {
     var userById = _db.Users.Find(id);

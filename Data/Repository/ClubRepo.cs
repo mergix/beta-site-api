@@ -27,9 +27,26 @@ public class ClubRepo: IClubRepo
         _db.Clubs.Remove(delete);
         _db.SaveChangesAsync();
     }
+    
+    public Clubs FindClubById(Guid id)
+    {
+        var userById = _db.Clubs.Find(id);
+        return userById ;
+    }
 
     public IEnumerable<Clubs> GetAllClubs()
     {
         return _db.Clubs.OrderByDescending(u => u.lastModified).ToList();
+    }
+    
+    public IEnumerable<Clubs> GetAllUsersByClub(Guid id)
+    {
+        
+        var club = _db.Clubs
+            .Include(c => c.userList)
+            .Where(b => b.id== id)
+            .ToList();
+        
+        return club;
     }
 }

@@ -14,6 +14,8 @@ public interface IPostRepo
     
     IEnumerable<Posts> GetAllPostsByDateCreated();
     
+    Posts FindPostById(Guid id);
+    
     
     IEnumerable<Posts> GetAllPostsByClub(Guid id);
     

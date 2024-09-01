@@ -27,6 +27,12 @@ public class GenreRepo :IGenreRepo
         _db.Genres.Remove(delete);
         _db.SaveChangesAsync();
     }
+    
+    public Genre FindGenreById(Guid id)
+    {
+        var userById = _db.Genres.Find(id);
+        return userById ;
+    }
 
     public IEnumerable<Genre> GetAllGenres()
     {

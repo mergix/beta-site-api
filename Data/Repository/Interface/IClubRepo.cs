@@ -10,5 +10,9 @@ public interface IClubRepo
     
     void Delete(Guid id);
     
+    Clubs FindClubById(Guid id);
+    
     IEnumerable<Clubs> GetAllClubs();
+    
+    IEnumerable<Clubs> GetAllUsersByClub(Guid id);
 }

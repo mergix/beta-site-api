@@ -10,5 +10,7 @@ public interface IBookRepo
     
     void Delete(Guid id);
     
+    Books FindBookById(Guid id);
+    
     IEnumerable<Books> GetAllBooks();
 }

@@ -27,6 +27,12 @@ public class BookRepo: IBookRepo
         _db.Books.Remove(delete);
         _db.SaveChangesAsync();
     }
+    
+    public Books FindBookById(Guid id)
+    {
+        var userById = _db.Books.Find(id);
+        return userById ;
+    }
 
     public IEnumerable<Books> GetAllBooks()
     {

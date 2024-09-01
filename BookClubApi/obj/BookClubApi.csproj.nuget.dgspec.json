@@ -123,9 +123,6 @@
             "projectReferences": {
               "/Users/mergixf/RiderProjects/BookClubApi/Models/Models.csproj": {
                 "projectPath": "/Users/mergixf/RiderProjects/BookClubApi/Models/Models.csproj"
-              },
-              "/Users/mergixf/RiderProjects/BookClubApi/Services/Services.csproj": {
-                "projectPath": "/Users/mergixf/RiderProjects/BookClubApi/Services/Services.csproj"
               }
             }
           }
@@ -203,11 +200,7 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "/Users/mergixf/RiderProjects/BookClubApi/Services/Services.csproj": {
-                "projectPath": "/Users/mergixf/RiderProjects/BookClubApi/Services/Services.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -283,7 +276,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/mergixf/RiderProjects/BookClubApi/Data/Data.csproj": {
+                "projectPath": "/Users/mergixf/RiderProjects/BookClubApi/Data/Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

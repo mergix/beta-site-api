@@ -10,6 +10,8 @@ public interface IUserRepo
     IEnumerable<Users> GetAllByDateCreated();
     
     IEnumerable<Users> GetAllByDateLastModified();
+    
+    
     Users FindUserById(Guid id);
     Users checkEmail(string email);
     
