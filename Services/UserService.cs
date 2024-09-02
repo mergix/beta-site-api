@@ -103,9 +103,7 @@ public class UserService :IUserService
         
         return userlist;
     }
-
-
-
+    
     public async Task<Users> GetUserById(Guid id)
     {
         return _userRepository.FindUserById(id);

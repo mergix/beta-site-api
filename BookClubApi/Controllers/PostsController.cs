@@ -4,27 +4,27 @@ using Services;
 
 namespace BookClubApi.Controllers;
 
+
 [Route("api/[controller]")]
 [ApiController]
-public class BookController :ControllerBase
+public class PostsController: ControllerBase
 {
-    
-    private readonly IBookService _bookService;
+    private readonly IPostService _postService;
 
-    public BookController(IBookService bookService)
+    public PostsController(IPostService postService)
     {
-        _bookService = bookService;
+        _postService = postService;
     }
     
     [HttpPost]
-    public IActionResult CreateClub([FromBody] Books book)
+    public IActionResult CreatePost([FromBody] Posts club)
     {
-        var newUser =  _bookService.CreateBook(book);
+        var newUser =  _postService.CreatePost(club);
         return Ok(newUser);
     }
     
     [HttpPut]
-    public IActionResult UpdateClub(Guid id, [FromBody] Books book)
+    public IActionResult UpdatePost(Guid id, [FromBody] Posts club)
     {
     
     
@@ -44,16 +44,16 @@ public class BookController :ControllerBase
         // {
         //     return Unauthorized();
         // }
-        if (id != book.id)
+        if (id != club.id)
         {
             return BadRequest();
         }
-        _bookService.UpdateBook(book);
+        _postService.UpdatePost(club);
         return NoContent();
     }
     
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteClub(Guid id)
+    public async Task<ActionResult> DeletePost(Guid id)
     {
         
         // var jwt = Request.Cookies["token"];
@@ -73,11 +73,11 @@ public class BookController :ControllerBase
         //     return Unauthorized();
         // }
         
-        var userToDelete = await _bookService.GetBookById(id);
+        var userToDelete = await _postService.GetPostById(id);
         if (userToDelete == null)
             return NotFound();
     
-        _bookService.DeleteBook(userToDelete.id);
+        _postService.DeletePost(userToDelete.id);
         return NoContent();
     }
 }

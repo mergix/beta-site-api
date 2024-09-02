@@ -4,27 +4,26 @@ using Services;
 
 namespace BookClubApi.Controllers;
 
+
 [Route("api/[controller]")]
 [ApiController]
-public class BookController :ControllerBase
+public class GenreController:ControllerBase
 {
-    
-    private readonly IBookService _bookService;
+    private readonly IGenreService _genreService;
 
-    public BookController(IBookService bookService)
+    public GenreController(IGenreService genreService)
     {
-        _bookService = bookService;
+        _genreService = genreService;
     }
-    
     [HttpPost]
-    public IActionResult CreateClub([FromBody] Books book)
+    public IActionResult CreateGenre([FromBody] Genre club)
     {
-        var newUser =  _bookService.CreateBook(book);
+        var newUser =  _genreService.CreateGenre(club);
         return Ok(newUser);
     }
     
     [HttpPut]
-    public IActionResult UpdateClub(Guid id, [FromBody] Books book)
+    public IActionResult UpdateGenre(Guid id, [FromBody] Genre club)
     {
     
     
@@ -44,16 +43,16 @@ public class BookController :ControllerBase
         // {
         //     return Unauthorized();
         // }
-        if (id != book.id)
+        if (id != club.id)
         {
             return BadRequest();
         }
-        _bookService.UpdateBook(book);
+        _genreService.UpdateGenre(club);
         return NoContent();
     }
     
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteClub(Guid id)
+    public async Task<ActionResult> DeleteGenre(Guid id)
     {
         
         // var jwt = Request.Cookies["token"];
@@ -73,11 +72,11 @@ public class BookController :ControllerBase
         //     return Unauthorized();
         // }
         
-        var userToDelete = await _bookService.GetBookById(id);
+        var userToDelete = await _genreService.GetGenreById(id);
         if (userToDelete == null)
             return NotFound();
     
-        _bookService.DeleteBook(userToDelete.id);
+        _genreService.DeleteGenre(userToDelete.id);
         return NoContent();
     }
 }
