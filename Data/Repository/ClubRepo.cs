@@ -9,6 +9,11 @@ public class ClubRepo: IClubRepo
     
     private readonly AppDbContext _db;
     
+    public ClubRepo(AppDbContext context) 
+    { 
+        _db = context;
+    }
+    
     public void Add(Clubs club)
     {
         _db.Clubs.Add(club);

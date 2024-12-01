@@ -54,24 +54,6 @@ public class GenreController:ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteGenre(Guid id)
     {
-        
-        // var jwt = Request.Cookies["token"];
-        // if (jwt == null)
-        // {
-        //     return Ok("No cookie");
-        // }
-        //
-        // var token = _userService.Verify(jwt);
-        //
-        // var userEmail = token.Issuer;
-        //
-        //
-        // var user = _userService.emailExists(userEmail);
-        // if (user.roleType != Role.admin)
-        // {
-        //     return Unauthorized();
-        // }
-        
         var userToDelete = await _genreService.GetGenreById(id);
         if (userToDelete == null)
             return NotFound();

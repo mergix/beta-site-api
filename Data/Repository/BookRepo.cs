@@ -9,6 +9,10 @@ public class BookRepo: IBookRepo
     
     private readonly AppDbContext _db;
     
+    public BookRepo(AppDbContext context) 
+    { 
+        _db = context;
+    }
     public void Add(Books book)
     {
         _db.Books.Add(book);

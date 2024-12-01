@@ -9,6 +9,11 @@ public class PostRepo: IPostRepo
     
     private readonly AppDbContext _db;
     
+    public PostRepo(AppDbContext context) 
+    { 
+        _db = context;
+    }
+    
     public void Add(Posts post)
     {
         _db.Posts.Add(post);

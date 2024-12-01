@@ -9,6 +9,11 @@ public class GenreRepo :IGenreRepo
     
     private readonly AppDbContext _db;
     
+    public GenreRepo(AppDbContext context) 
+    { 
+        _db = context;
+    }
+    
     public void Add(Genre genre)
     {
         _db.Genres.Add(genre);

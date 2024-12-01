@@ -136,23 +136,6 @@ public class UserController:ControllerBase
     [HttpGet]
     public IActionResult GetUsersList()
     {
-        // var jwt = Request.Cookies["token"];
-        //
-        // if (jwt == null)
-        // {
-        //     return Ok("No cookie");
-        // }
-        //
-        // var token = _userService.Verify(jwt);
-        //
-        // var userEmail = token.Issuer;
-        //
-        //
-        // var user = _userService.emailExists(userEmail);
-        // if (user.roleType != Role.user && user.roleType != Role.admin)
-        // {
-        //     return Unauthorized();
-        // }
         
         return  Ok(_userService.GetUserList());
     }

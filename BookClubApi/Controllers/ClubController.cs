@@ -26,24 +26,6 @@ public class ClubController:ControllerBase
     [HttpPut]
     public IActionResult UpdateClub(Guid id, [FromBody] Clubs club)
     {
-    
-    
-        // var jwt = Request.Cookies["token"];
-        // if (jwt == null)
-        // {
-        //     return Ok("No cookie");
-        // }
-        //
-        // var token = _userService.Verify(jwt);
-        //
-        // var userEmail = token.Issuer;
-        //
-        //
-        // var cust = _userService.emailExists(userEmail);
-        // if (cust.roleType != Role.admin)
-        // {
-        //     return Unauthorized();
-        // }
         if (id != club.id)
         {
             return BadRequest();
@@ -82,14 +64,14 @@ public class ClubController:ControllerBase
     }
     
     
-    [HttpPost]
+    [HttpPost("/clubUser")]
     public IActionResult AddClubUser([FromBody] Clubs club)
     {
         // var newUser =  _clubService.CreateClubs(club);
         return Ok();
     }
     
-    [HttpPost]
+    [HttpPost("/clubAdmin")]
     public IActionResult AddClubAdmin([FromBody] Clubs club)
     {
         // var newUser =  _clubService.CreateClubs(club);

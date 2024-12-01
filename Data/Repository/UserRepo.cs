@@ -2,6 +2,7 @@ using Data.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
+
 namespace Data.Repository;
 
 public class UserRepo : IUserRepo
@@ -10,6 +11,10 @@ public class UserRepo : IUserRepo
   private readonly AppDbContext _db;
 
 
+  public UserRepo(AppDbContext context) 
+  { 
+    _db = context;
+  }
   public void Add(Users user)
   {
     _db.Users.Add(user);

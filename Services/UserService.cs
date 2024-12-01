@@ -48,11 +48,12 @@ public class UserService :IUserService
     }
     public async Task<Users> CreateUser(Users model)
     {
-        var existingUser = _userRepository.checkEmail(model.email);
+        // var existingUser = _userRepository.checkEmail(model.email);
         
         var passwordhash = _passwordHasher.Hash(model.passwordHash);
 
         var ms = "fff";
+
 
         var newUser = new Users()
         {
@@ -68,15 +69,13 @@ public class UserService :IUserService
             lastModified = DateTime.UtcNow
         };
         
-        if (existingUser != null)
-        {
-            return null;
-        }
+        // if (existingUser != null)
+        // {
+        //     return null;
+        // }
         
         _userRepository.Add(newUser); 
         
-
-
         var viewModel = new LoginDTO()
         {
             UserId = newUser.id,
@@ -99,7 +98,6 @@ public class UserService :IUserService
     public async Task<IEnumerable<Users>> GetUserList()
     {
         var userlist =  _userRepository.GetAllByDateCreated();
-        
         
         return userlist;
     }
