@@ -34,12 +34,21 @@ public class ReadingListRepo: IReadingListRepo
 
     public ReadingList GetReadingListByUserId(Guid id)
     {
-        throw new NotImplementedException();
+        var userById = _db.ReadingList
+            .Where(c => c.user.id == id).First();
+        return userById ;
     }
 
-    public void AddBookToList()
+
+
+    public void AddBookToList(Guid id,int bookid)
     {
-        throw new NotImplementedException();
+        var tt =  _db.ReadingList.Find(id);
+        // var gg =_db..FirstOrDefault(x => x.Id == deleteBooking.room.Id);
+        
+        // tt.bookList = status.completed;
+        // _db.ReadingList.Remove(deleteBooking);
+        _db.SaveChanges();
     }
 
     public void ChangeStatus()

@@ -97,6 +97,11 @@ public class UserService :IUserService
         _userRepository.Delete(id);
     }
 
+    public ReadingList GetReadingList(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<IEnumerable<Users>> GetUserList()
     {
         var userlist =  _userRepository.GetAllByDateCreated();

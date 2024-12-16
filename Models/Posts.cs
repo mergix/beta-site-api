@@ -8,5 +8,5 @@ public class Posts:BaseEntity
     
     public Clubs clubList { get; set; }
     
-    public Books bookList { get; set; }
+    public int bookid { get; set; }
 }

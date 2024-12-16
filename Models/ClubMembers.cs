@@ -3,7 +3,7 @@ namespace Models;
 public class ClubMembers:BaseEntity
 {
     public bool isAdmin { get; set; }
-    public Guid clubId { get; set; }
-    public Guid userId { get; set; }
+    public Clubs club { get; set; }
+    public Users user { get; set; }
     
 }

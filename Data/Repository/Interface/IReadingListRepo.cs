@@ -12,7 +12,7 @@ public interface IReadingListRepo
     
     ReadingList GetReadingListByUserId(Guid id);
 
-    void AddBookToList();
+    void AddBookToList(Guid id,int bookid);
     
     void ChangeStatus();
 

@@ -42,7 +42,7 @@ public class PostService :IPostService
             body = model.body,
             userList = model.userList,
             clubList = model.clubList,
-            bookList = model.bookList ,
+            bookid = model.bookid ,
             dateCreated = DateTime.UtcNow,
             lastModified = DateTime.UtcNow
         };
@@ -52,6 +52,17 @@ public class PostService :IPostService
 
     public void UpdatePost(Posts obj)
     {
+        var newPost = new Posts()
+        {
+            id = Guid.NewGuid(),
+            body = obj.body,
+            userList = obj.userList,
+            clubList = obj.clubList,
+            bookid = obj.bookid ,
+            dateCreated = obj.dateCreated,
+            lastModified = DateTime.UtcNow
+        };
+        
         _postRepository.Update(obj);
     }
 

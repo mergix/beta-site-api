@@ -53,6 +53,7 @@ public class PostRepo: IPostRepo
     {
         var list = _db.Posts
             .Where(b => b.clubList.id == id)
+            .OrderByDescending(u => u.dateCreated)
             .ToList();
         
         return list ;
@@ -60,11 +61,11 @@ public class PostRepo: IPostRepo
 
     public IEnumerable<Posts> GetAllPostsByBook(Guid id)
     {
-        var list = _db.Posts
-            .Where(b => b.bookList.id == id)
-            .ToList();
-        
-        return list ;
+        // var list = _db.Posts
+        //     .Where(b => b.bookList.id == id)
+        //     .ToList();
+        //
+        return null ;
     }
 
     public IEnumerable<Posts> GetAllPostsByUser(Guid id)

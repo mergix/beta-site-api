@@ -11,23 +11,41 @@ public interface IClubService
     public void UpdateClubs(Clubs user);
 
     public void DeleteClubs(Guid id);
+    public  Task<Clubs> GetClubById(Guid id);
     
     public  Task<IEnumerable<Clubs>> GetAllClubs();
     
-    public  Task<IEnumerable<Clubs>> GetRandomClubs();
+    public  Task<IEnumerable<Clubs>> SearchClubs(string param);
     
-    public  Task<Clubs> GetClubsById(Guid id);
+    public  List<Clubs> GetRandomClubs();
+    
+    public  Task<ClubMembers> AddClubMember(ClubMembers mem);
+    
+    public void UpdateClubMemeber(ClubMembers mem);
+
+    public void DeleteClubMember(Guid userid , Guid clubid);
+    
+    public  Task<IEnumerable<ClubMembers>> GetAllUsersByClubId(Guid id);
+    
+    public  Task<IEnumerable<ClubMembers>> GetAllClubsByUserId(Guid id);
+    
+
+    
+
     
 }
 public class ClubService :IClubService
 {
     
     private readonly IClubRepo _clubRepository;
-    
-    public ClubService(IClubRepo clubRepository) 
+    private readonly IUserRepo _userRepository;
+    private IClubService _clubServiceImplementation;
+
+    public ClubService(IClubRepo clubRepository, IUserRepo userRepository) 
     { 
         
         _clubRepository = clubRepository;
+        _userRepository = userRepository;
 
     }
     public async Task<Clubs> CreateClubs(Clubs model)
@@ -39,9 +57,7 @@ public class ClubService :IClubService
             description = model.description,
             status = model.status,
             Image = model.Image,
-            userList = model.userList,
             genreList = model.genreList,
-            adminUserList = model.adminUserList,
             dateCreated = DateTime.UtcNow,
             lastModified = DateTime.UtcNow,
         };
@@ -49,9 +65,21 @@ public class ClubService :IClubService
         return newClub ;
     }
 
-    public void UpdateClubs(Clubs user)
+    public void UpdateClubs(Clubs model)
     {
-        _clubRepository.Update(user);
+        
+        var newClub = new Clubs()
+        {
+            id = Guid.NewGuid(),
+            name = model.name,
+            description = model.description,
+            status = model.status,
+            Image = model.Image,
+            genreList = model.genreList,
+            dateCreated = DateTime.UtcNow,
+            lastModified = DateTime.UtcNow,
+        };
+        _clubRepository.Update(newClub);
     }
 
     public void DeleteClubs(Guid id)
@@ -64,7 +92,13 @@ public class ClubService :IClubService
         return _clubRepository.GetAllClubs();
     }
 
-    public Task<IEnumerable<Clubs>> GetRandomClubs()
+    public Task<IEnumerable<Clubs>> SearchClubs(string param)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    public List<Clubs> GetRandomClubs()
     {
 
         var clubs = _clubRepository.GetAllClubs();
@@ -82,15 +116,53 @@ public class ClubService :IClubService
             return clubsList;
     }
 
-    public Task<Clubs> GetClubsById(Guid id)
+    public async Task<ClubMembers> AddClubMember(ClubMembers mem)
     {
-        throw new NotImplementedException();
+        var newClub = new ClubMembers()
+        {
+            id = Guid.NewGuid(),
+            club = _clubRepository.FindClubById(mem.club.id),
+            user = _userRepository.FindUserById(mem.user.id),
+            isAdmin = true,
+            dateCreated = DateTime.UtcNow,
+            lastModified = DateTime.UtcNow,
+        };
+        _clubRepository.AddUserToClub(newClub);
+        return newClub ;    
+    }
+    
+
+    public void UpdateClubMemeber(ClubMembers mem)
+    {
+               
+        var newClub = new ClubMembers()
+        {
+            id = Guid.NewGuid(),
+            club = _clubRepository.FindClubById(mem.club.id),
+            user = _userRepository.FindUserById(mem.user.id),
+            isAdmin = true,
+            dateCreated = DateTime.UtcNow,
+            lastModified = DateTime.UtcNow,
+        };
+
+        _clubRepository.UpdateClubMember(newClub);
     }
 
-    public async Task<IEnumerable<Clubs>> GetAllClubsByUserId(Users user)
+    public void DeleteClubMember(Guid userid, Guid clubid)
     {
-        return _clubRepository.GetAllClubs();
+        _clubRepository.DeleteClubMemeber(userid, clubid);
     }
+
+    public async Task<IEnumerable<ClubMembers>> GetAllUsersByClubId(Guid id)
+    {
+        return _clubRepository.GetAllUsersByClubId(id);
+    }
+
+    public async Task<IEnumerable<ClubMembers>> GetAllClubsByUserId(Guid id)
+    {
+        return _clubRepository.GetAllClubsByUserId(id);
+    }
+    
 
     public async Task<Clubs> GetClubById(Guid id)
     {

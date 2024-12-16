@@ -23,7 +23,7 @@ public class ClubController:ControllerBase
         return Ok(newUser);
     }
     
-    [HttpPut]
+    [HttpPut("/{id}")]
     public IActionResult UpdateClub(Guid id, [FromBody] Clubs club)
     {
         if (id != club.id)
@@ -34,7 +34,7 @@ public class ClubController:ControllerBase
         return NoContent();
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("/{id}")]
     public async Task<ActionResult> DeleteClub(Guid id)
     {
         
@@ -55,7 +55,7 @@ public class ClubController:ControllerBase
         //     return Unauthorized();
         // }
         
-        var userToDelete = await _clubService.GetClubsById(id);
+        var userToDelete = await _clubService.GetClubById(id);
         if (userToDelete == null)
             return NotFound();
     
@@ -69,23 +69,55 @@ public class ClubController:ControllerBase
         return Ok(clublist);
     }    
     
-    public IActionResult GetAllClubsByUserId()
+    // [HttpGet("/clublist/{id}")]
+    // public IActionResult GetAllClubsByUserId()
+    // {
+    //     var clublist =  _clubService.GetAllClubs();
+    //     return Ok(clublist);
+    // }    
+    
+    [HttpGet("/userlist/{id}")]
+    public IActionResult GetAllUsersByClubId(Guid id)
     {
-        var clublist =  _clubService.GetAllClubs();
+        var clublist =  _clubService.GetAllUsersByClubId(id);
         return Ok(clublist);
     }    
     
-    [HttpPost("/clubUser")]
-    public IActionResult AddClubUser([FromBody] Clubs club)
+    [HttpPost("/members")]
+    public IActionResult CreateClubMemeber([FromBody] ClubMembers mem)
     {
-        // var newUser =  _clubService.CreateClubs(club);
-        return Ok();
+        var newUser =  _clubService.AddClubMember(mem);
+        return Ok(newUser);
     }
     
-    [HttpPost("/clubAdmin")]
-    public IActionResult AddClubAdmin([FromBody] Clubs club)
+    [HttpPut("/members/{id}")]
+    public IActionResult UpdateClubMember(Guid id, [FromBody] ClubMembers mem)
     {
-        // var newUser =  _clubService.CreateClubs(club);
-        return Ok();
+        if (id != mem.id)
+        {
+            return BadRequest();
+        }
+        _clubService.UpdateClubMemeber(mem);
+        return NoContent();
     }
+    
+    [HttpDelete("/members/{id}")]
+    public  Task<ActionResult> DeleteClubMemeber(Guid userid , Guid clubid)
+    {
+        
+        
+        // var userToDelete = await _clubService.GetClubById(id);
+        // if (userToDelete == null)
+        //     return NotFound();
+        
+        _clubService.DeleteClubMember(userid , clubid);
+        return Task.FromResult<ActionResult>(Ok());
+    }
+    
+    [HttpGet("/randomlist")]
+    public IActionResult GetRandomClubs()
+    {
+        var clublist =  _clubService.GetRandomClubs();
+        return Ok(clublist);
+    }    
 }

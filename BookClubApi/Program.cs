@@ -20,13 +20,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IPostRepo, PostRepo>();
-builder.Services.AddScoped<IBookRepo, BookRepo>();
-builder.Services.AddScoped<IGenreRepo, GenreRepo>();
+builder.Services.AddScoped<IReadingListRepo, ReadingListRepo>();
 builder.Services.AddScoped<IClubRepo, ClubRepo>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostService, PostService>();
-builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IClubService, ClubService>();
 // builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();

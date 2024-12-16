@@ -16,9 +16,5 @@ public class Clubs:BaseEntity
     
     public byte? [] Image {get; set; }
     
-    public Users userList { get; set; }
-    
-    public Users adminUserList { get; set; }
-    
     public  clubState status { get; set; }
 }
