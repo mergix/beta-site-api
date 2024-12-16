@@ -13,6 +13,8 @@ public interface IUserService
     public void UpdateUser(Users user);
 
     public void DeleteUser(Guid id);
+
+    public ReadingList GetReadingList(Guid id);
     
     public  Task<IEnumerable<Users>> GetUserList();
     

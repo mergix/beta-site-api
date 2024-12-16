@@ -14,6 +14,7 @@ public interface IClubService
     
     public  Task<IEnumerable<Clubs>> GetAllClubs();
     
+    public  Task<IEnumerable<Clubs>> GetRandomClubs();
     
     public  Task<Clubs> GetClubsById(Guid id);
     
@@ -63,7 +64,35 @@ public class ClubService :IClubService
         return _clubRepository.GetAllClubs();
     }
 
-    public async Task<Clubs> GetClubsById(Guid id)
+    public Task<IEnumerable<Clubs>> GetRandomClubs()
+    {
+
+        var clubs = _clubRepository.GetAllClubs();
+        
+            List<Clubs> clubsList = new List<Clubs>();
+
+        
+            for (int i = 0; i < 5; i++)
+            {
+                var r = new Random();
+                clubsList.Add(clubs.ElementAt(r.Next(0, clubs.Count())));
+            
+            }
+
+            return clubsList;
+    }
+
+    public Task<Clubs> GetClubsById(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<IEnumerable<Clubs>> GetAllClubsByUserId(Users user)
+    {
+        return _clubRepository.GetAllClubs();
+    }
+
+    public async Task<Clubs> GetClubById(Guid id)
     {
         return _clubRepository.FindClubById(id);
     }

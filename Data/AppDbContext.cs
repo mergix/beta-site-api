@@ -14,6 +14,8 @@ public class AppDbContext : DbContext
     public DbSet<Posts> Posts { get; set; }
     public DbSet<Books> Books { get; set; }
     public DbSet<Genre> Genres { get; set; }
+    
+    public DbSet<ReadingList> ReadingList { get; set; }
 
     
 }

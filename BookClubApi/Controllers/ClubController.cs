@@ -62,7 +62,18 @@ public class ClubController:ControllerBase
         _clubService.DeleteClubs(userToDelete.id);
         return NoContent();
     }
+    [HttpPost("/clublist")]
+    public IActionResult GetAllClubs()
+    {
+        var clublist =  _clubService.GetAllClubs();
+        return Ok(clublist);
+    }    
     
+    public IActionResult GetAllClubsByUserId()
+    {
+        var clublist =  _clubService.GetAllClubs();
+        return Ok(clublist);
+    }    
     
     [HttpPost("/clubUser")]
     public IActionResult AddClubUser([FromBody] Clubs club)

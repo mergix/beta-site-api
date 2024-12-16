@@ -4,8 +4,20 @@ using Models;
 
 namespace Data.Repository;
 
+
+public static class EnumerableExtensions
+{
+    public static T Random<T>(this IEnumerable<T> enumerable)
+    {
+        var r = new Random();
+        var list = enumerable as IList<T> ?? enumerable.ToList();
+        return list.ElementAt(r.Next(0, list.Count()));
+    }
+}
 public class ClubRepo: IClubRepo
 {
+    
+
     
     private readonly AppDbContext _db;
     
@@ -54,4 +66,16 @@ public class ClubRepo: IClubRepo
         
         return club;
     }
+    
+    public IEnumerable<Clubs> GetAllClubsByUserId(Guid id)
+    {
+        
+        var club = _db.Clubs
+            .Where(b => b.userList.id== id)
+            .ToList();
+        
+        return club;
+    }
+    
+
 }
