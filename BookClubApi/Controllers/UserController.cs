@@ -24,37 +24,12 @@ public class UserController:ControllerBase
     public IActionResult CreateUser([FromBody] Users user)
     {
         var newUser =  _userService.CreateUser(user);
-        // var testemail = new EmailDTO()
-        // {
-        //     Recipient = user.userEmail,
-        //     Body = "Thank you for registering with us here at spectrum hotels",
-        //     Subject = "Account Created"
-        // };
-        // _emailService.SendEmail(testemail);
         return Ok(newUser);
     }
     
     [HttpPut]
     public IActionResult UpdateUser(Guid id, [FromBody] Users user)
     {
-    
-    
-        // var jwt = Request.Cookies["token"];
-        // if (jwt == null)
-        // {
-        //     return Ok("No cookie");
-        // }
-        //
-        // var token = _userService.Verify(jwt);
-        //
-        // var userEmail = token.Issuer;
-        //
-        //
-        // var cust = _userService.emailExists(userEmail);
-        // if (cust.roleType != Role.admin)
-        // {
-        //     return Unauthorized();
-        // }
         if (id != user.id)
         {
             return BadRequest();

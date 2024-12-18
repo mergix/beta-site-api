@@ -1,5 +1,6 @@
 using Data.Repository.Interface;
 using Models;
+using Models.DTO_s;
 
 namespace Services;
 
@@ -8,7 +9,7 @@ namespace Services;
 
 public interface IPostService
 {
-    public  Task<Posts> CreatePost(Posts model);
+    public  Task<Posts> CreatePost(createPost model);
     
     public void UpdatePost(Posts user);
 
@@ -27,21 +28,26 @@ public interface IPostService
 public class PostService :IPostService
 {
     private readonly IPostRepo _postRepository;
+    private readonly IClubRepo _clubRepository;
+    private readonly IUserRepo _userRepository;
     
-    public PostService(IPostRepo postRepository) 
+    public PostService(IPostRepo postRepository,IClubRepo clubRepository, IUserRepo userRepository) 
     { 
         
         _postRepository = postRepository;
+        _clubRepository = clubRepository;
+        _userRepository = userRepository;
 
     }
-    public async Task<Posts> CreatePost(Posts model)
+    public async Task<Posts> CreatePost(createPost model)
     {
         var newPost = new Posts()
         {
             id = Guid.NewGuid(),
+            subject = model.subject,
             body = model.body,
-            userList = model.userList,
-            clubList = model.clubList,
+            clubList = _clubRepository.FindClubById(model.clubid),
+            userList = _userRepository.FindUserById(model.userid),
             bookid = model.bookid ,
             dateCreated = DateTime.UtcNow,
             lastModified = DateTime.UtcNow

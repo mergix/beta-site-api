@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.DTO_s;
 using Services;
 
 namespace BookClubApi.Controllers;
@@ -17,7 +18,7 @@ public class PostsController: ControllerBase
     }
     
     [HttpPost]
-    public IActionResult CreatePost([FromBody] Posts club)
+    public IActionResult CreatePost([FromBody] createPost club)
     {
         var newUser =  _postService.CreatePost(club);
         return Ok(newUser);
@@ -26,24 +27,7 @@ public class PostsController: ControllerBase
     [HttpPut]
     public IActionResult UpdatePost(Guid id, [FromBody] Posts club)
     {
-    
-    
-        // var jwt = Request.Cookies["token"];
-        // if (jwt == null)
-        // {
-        //     return Ok("No cookie");
-        // }
-        //
-        // var token = _userService.Verify(jwt);
-        //
-        // var userEmail = token.Issuer;
-        //
-        //
-        // var cust = _userService.emailExists(userEmail);
-        // if (cust.roleType != Role.admin)
-        // {
-        //     return Unauthorized();
-        // }
+
         if (id != club.id)
         {
             return BadRequest();
@@ -61,5 +45,33 @@ public class PostsController: ControllerBase
     
         _postService.DeletePost(userToDelete.id);
         return NoContent();
+    }
+    
+    [HttpGet("club")]
+    public IActionResult GetPostByClub(Guid id)
+    {
+        var newUser =  _postService.GetAllPostByClub(id);
+        return Ok(newUser);
+    }
+    
+    [HttpGet("user")]
+    public IActionResult GetPostByUser(Guid id)
+    {
+        var newUser =  _postService.GetAllPostByUser(id);
+        return Ok(newUser);
+    }
+    
+    [HttpGet("book")]
+    public IActionResult GetPostByBook(Guid id)
+    {
+        var newUser =  _postService.GetAllPostByBook(id);
+        return Ok(newUser);
+    }
+    
+    [HttpGet]
+    public IActionResult GetAllPosts()
+    {
+        var newUser =  _postService.GetAllPosts();
+        return Ok(newUser);
     }
 }

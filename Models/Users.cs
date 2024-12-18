@@ -14,7 +14,7 @@ public class Users:BaseEntity
     public string passwordHash  { get; set; } 
     
     public Gender? gender { get; set; }
-    public byte? [] profileImage {get; set; }
+    public byte? []? profileImage {get; set; }
     public string? address { get; set; }
     public Int64? phoneNo { get; set; }
 }

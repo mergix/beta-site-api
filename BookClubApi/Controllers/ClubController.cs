@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.DTO_s;
 using Services;
 
 namespace BookClubApi.Controllers;
@@ -17,7 +18,7 @@ public class ClubController:ControllerBase
     }
     
     [HttpPost]
-    public IActionResult CreateClub([FromBody] Clubs club)
+    public IActionResult CreateClub([FromBody] clubCreate club)
     {
         var newUser =  _clubService.CreateClubs(club);
         return Ok(newUser);
@@ -62,19 +63,26 @@ public class ClubController:ControllerBase
         _clubService.DeleteClubs(userToDelete.id);
         return NoContent();
     }
-    [HttpPost("/clublist")]
+    
+    [HttpGet("/club/{id}")]
+    public IActionResult GetClubById(Guid id)
+    {
+        var clublist =  _clubService.GetClubById(id);
+        return Ok(clublist);
+    }    
+    [HttpGet("/clublist")]
     public IActionResult GetAllClubs()
     {
         var clublist =  _clubService.GetAllClubs();
         return Ok(clublist);
     }    
     
-    // [HttpGet("/clublist/{id}")]
-    // public IActionResult GetAllClubsByUserId()
-    // {
-    //     var clublist =  _clubService.GetAllClubs();
-    //     return Ok(clublist);
-    // }    
+    [HttpGet("/clublist/{id}")]
+    public IActionResult GetAllClubsByUserId(Guid id)
+    {
+        var clublist =  _clubService.GetAllClubsByUserId(id);
+        return Ok(clublist);
+    }    
     
     [HttpGet("/userlist/{id}")]
     public IActionResult GetAllUsersByClubId(Guid id)
@@ -84,7 +92,7 @@ public class ClubController:ControllerBase
     }    
     
     [HttpPost("/members")]
-    public IActionResult CreateClubMemeber([FromBody] ClubMembers mem)
+    public IActionResult CreateClubMemeber([FromBody] createMember mem)
     {
         var newUser =  _clubService.AddClubMember(mem);
         return Ok(newUser);

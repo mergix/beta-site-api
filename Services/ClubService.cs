@@ -1,12 +1,13 @@
 using Data.Repository.Interface;
 using Models;
+using Models.DTO_s;
 
 namespace Services;
 
 
 public interface IClubService
 {
-    public  Task<Clubs> CreateClubs(Clubs model);
+    public  Task<Clubs> CreateClubs(clubCreate model);
     
     public void UpdateClubs(Clubs user);
 
@@ -19,7 +20,7 @@ public interface IClubService
     
     public  List<Clubs> GetRandomClubs();
     
-    public  Task<ClubMembers> AddClubMember(ClubMembers mem);
+    public  Task<ClubMembers> AddClubMember(createMember mem);
     
     public void UpdateClubMemeber(ClubMembers mem);
 
@@ -48,16 +49,15 @@ public class ClubService :IClubService
         _userRepository = userRepository;
 
     }
-    public async Task<Clubs> CreateClubs(Clubs model)
+    public async Task<Clubs> CreateClubs(clubCreate model)
     {
         var newClub = new Clubs()
         {
             id = Guid.NewGuid(),
             name = model.name,
             description = model.description,
-            status = model.status,
-            Image = model.Image,
-            genreList = model.genreList,
+            status = clubState.Open,
+            Image = null,
             dateCreated = DateTime.UtcNow,
             lastModified = DateTime.UtcNow,
         };
@@ -75,7 +75,6 @@ public class ClubService :IClubService
             description = model.description,
             status = model.status,
             Image = model.Image,
-            genreList = model.genreList,
             dateCreated = DateTime.UtcNow,
             lastModified = DateTime.UtcNow,
         };
@@ -104,25 +103,36 @@ public class ClubService :IClubService
         var clubs = _clubRepository.GetAllClubs();
         
             List<Clubs> clubsList = new List<Clubs>();
+            List<int> intList = new List<int>();
 
-        
-            for (int i = 0; i < 5; i++)
+            if (clubs.Count() == 0)
             {
+                return null;
+            }
                 var r = new Random();
-                clubsList.Add(clubs.ElementAt(r.Next(0, clubs.Count())));
-            
+            for (int i = 0; i < 3; i++)
+            {
+                var g = r.Next(0, clubs.Count());
+                if (!intList.Contains(g))
+                {
+                    intList.Add(g);
+                    clubsList.Add(clubs.ElementAt(g));
+                }else if (intList.Contains(g))
+                {
+                    i--;
+                }
             }
 
             return clubsList;
     }
 
-    public async Task<ClubMembers> AddClubMember(ClubMembers mem)
+    public async Task<ClubMembers> AddClubMember(createMember mem)
     {
         var newClub = new ClubMembers()
         {
             id = Guid.NewGuid(),
-            club = _clubRepository.FindClubById(mem.club.id),
-            user = _userRepository.FindUserById(mem.user.id),
+            club = _clubRepository.FindClubById(mem.clubId),
+            user = _userRepository.FindUserById(mem.userId),
             isAdmin = true,
             dateCreated = DateTime.UtcNow,
             lastModified = DateTime.UtcNow,

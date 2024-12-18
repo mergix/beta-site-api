@@ -12,9 +12,9 @@ public class Clubs:BaseEntity
     
     public string description { get; set; }
     
-    public Genre genreList { get; set; }
+    // public Genre genreList { get; set; }
     
-    public byte? [] Image {get; set; }
+    public byte? []? Image {get; set; }
     
     public  clubState status { get; set; }
 }
