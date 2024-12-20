@@ -35,7 +35,10 @@ public class PostRepo: IPostRepo
 
     public IEnumerable<Posts> GetAllPosts()
     {
-        return _db.Posts.OrderByDescending(u => u.lastModified).ToList();
+        return _db.Posts
+            .Include(b => b.userList)
+            .OrderByDescending(u => u.lastModified)
+            .ToList();
     }
     
     public Posts FindPostById(Guid id)
@@ -46,12 +49,16 @@ public class PostRepo: IPostRepo
 
     public IEnumerable<Posts> GetAllPostsByDateCreated()
     {
-        return _db.Posts.OrderByDescending(u => u.dateCreated).ToList();
+        return _db.Posts
+            .Include(b => b.userList)
+            .OrderByDescending(u => u.dateCreated)
+            .ToList();
     }
 
     public IEnumerable<Posts> GetAllPostsByClub(Guid id)
     {
         var list = _db.Posts
+            .Include(b => b.userList)
             .Where(b => b.clubList.id == id)
             .OrderByDescending(u => u.dateCreated)
             .ToList();

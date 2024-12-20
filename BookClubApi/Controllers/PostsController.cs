@@ -47,21 +47,21 @@ public class PostsController: ControllerBase
         return NoContent();
     }
     
-    [HttpGet("club")]
+    [HttpGet("club/{id}")]
     public IActionResult GetPostByClub(Guid id)
     {
         var newUser =  _postService.GetAllPostByClub(id);
         return Ok(newUser);
     }
     
-    [HttpGet("user")]
+    [HttpGet("user/{id}")]
     public IActionResult GetPostByUser(Guid id)
     {
         var newUser =  _postService.GetAllPostByUser(id);
         return Ok(newUser);
     }
     
-    [HttpGet("book")]
+    [HttpGet("book/{id}")]
     public IActionResult GetPostByBook(Guid id)
     {
         var newUser =  _postService.GetAllPostByBook(id);
